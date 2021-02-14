@@ -1,5 +1,6 @@
 using System.Text;
 using System;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -39,8 +40,17 @@ namespace Kurs
                     }
 
                     var usersRepository = new UsersRepository();
-                    User User = usersRepository.getUserById(userId);
-                    await context.Response.WriteAsync(JsonConvert.SerializeObject(User), Encoding.UTF8);
+                    if(userId == -1)
+                    {
+                        IEnumerable<User> Users = usersRepository.GetUsers();
+                        await context.Response.WriteAsync(JsonConvert.SerializeObject(Users), Encoding.UTF8);
+                    }
+                    else
+                    {
+                        User User = usersRepository.GetUserById(userId);
+                        await context.Response.WriteAsync(JsonConvert.SerializeObject(User), Encoding.UTF8);
+                    }
+                    
                 });
             });
         }
