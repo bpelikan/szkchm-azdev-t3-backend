@@ -15,7 +15,7 @@ public class UsersRepository
             .AddEnvironmentVariables()
             .Build();
 
-        var connectionString = config.GetConnectionString("kurs-azure"); 
+        var connectionString = config.GetConnectionString("kursazure"); 
 
         using (var connection = new SqlConnection(connectionString))
         {
@@ -32,7 +32,7 @@ public class UsersRepository
             .AddEnvironmentVariables()
             .Build();
 
-        var connectionString = config.GetConnectionString("kurs-azure"); 
+        var connectionString = config.GetConnectionString("kursazure"); 
 
         using (var connection = new SqlConnection(connectionString))
         {
